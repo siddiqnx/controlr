@@ -1,25 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Home } from 'pages/Home/Home';
+import { Rooms } from 'pages/Rooms/Rooms';
+import { Usage } from 'pages/Usage/Usage';
+import { Rules } from 'pages/Rules/Rules';
+import { Events } from 'pages/Events/Events';
+import { Navbar } from 'components/Navbar/Navbar';
+import { Login } from 'pages/Login/Login';
 
-function App() {
+const App = () => {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  const authenticate = () => setAuthenticated(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {!authenticated ?
+        <Login authenticate={authenticate} /> :
+        <Router>
+          <Switch>
+
+            <Route path="/rooms">
+              <Rooms />
+            </Route>
+            <Route path="/usage">
+              <Usage />
+            </Route>
+            <Route path="/rules">
+              <Rules />
+            </Route>
+            <Route path="/events">
+              <Events />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+
+          </Switch>
+          <Navbar />
+        </Router>
+      }
+    </>
   );
 }
 
