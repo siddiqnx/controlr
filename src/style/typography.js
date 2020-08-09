@@ -15,6 +15,13 @@ export const tHeading2_0 = css`
   font-size: 16px;
 `;
 
+export const tHeadingGroup = css`
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+`;
+
 export const tText_l4_b = css`
   font-weight: bold;
   font-size: 24px;

@@ -1,13 +1,17 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { tText_l1_b, tText_l4_b, tText_s1_n } from 'style/typography';
+import { Link } from 'react-router-dom';
 
 const StyledCard = styled.div`
-  width: ${({ width }) => width};
   background-color: ${({ theme }) => theme.cPrimary_750};
   border: 1px solid ${({ theme }) => theme.cPrimary_650};
   border-radius: ${({ theme }) => theme.brRadius_1};
   padding: 26px 16px;
+
+  ${({ width }) => width && css`
+    width: ${width};
+  `}
 
   footer {
     margin-top: 48px;
@@ -30,18 +34,21 @@ const StyledCard = styled.div`
 `;
 
 export const RoomCard = ({
-  width = '100%',
+  width,
   title = '',
   numDevicesOn = 0,
-  numDevicesTotal = 0
+  numDevicesTotal = 0,
+  link
 }) => {
   return (
     <StyledCard width={width}>
-      <div className='title'>{title}</div>
-      <footer>
-        <div className='value'><span>{numDevicesOn}</span>/{numDevicesTotal}</div>
+      <Link to={link}>
+        <div className='title'>{title}</div>
+        <footer>
+          <div className='value'><span>{numDevicesOn}</span>/{numDevicesTotal}</div>
 
-      </footer>
+        </footer>
+      </Link>
     </StyledCard>
   )
 }

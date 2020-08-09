@@ -15,7 +15,7 @@ const groups = [
 
 const StyledList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(328px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(312px, 1fr));
   grid-gap: 16px;
 `;
 
@@ -23,12 +23,14 @@ export const GroupList = () => {
   return (
     <StyledList>
       {groups.map((group) => (
-        <GroupCard
-          className='groupCard'
-          title={group.groupName}
-          numDevices={group.numDevices}
-          link='/usage'
-        />
+        <li>
+          <GroupCard
+            className='groupCard'
+            title={group.groupName}
+            numDevices={group.numDevices}
+            link='/usage'
+          />
+        </li>
       ))}
     </StyledList>
   )

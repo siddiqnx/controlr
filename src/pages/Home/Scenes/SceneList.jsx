@@ -27,20 +27,27 @@ const scenes = [
 
 const StyledList = styled.ul`
   display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 16px;
+
+  .sceneCard {
+    height: 100%;
+  }
 `;
 
 export const SceneList = () => {
   return (
     <StyledList>
       {scenes.map((scene) => (
-        <SceneCard
-          link='/rooms'
-          title={scene.sceneName}
-          numDevicesOff={scene.numDevicesOff}
-          numDevicesOn={scene.numDevicesOn}
-        />
+        <li>
+          <SceneCard
+            className='sceneCard'
+            link='/rooms'
+            title={scene.sceneName}
+            numDevicesOff={scene.numDevicesOff}
+            numDevicesOn={scene.numDevicesOn}
+          />
+        </li>
       ))}
     </StyledList>
   )

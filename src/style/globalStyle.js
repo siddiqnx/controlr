@@ -30,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
+    font-size: 14px;
     color: ${({ theme }) => theme.cPrimary_100};
     background: ${({ theme }) => theme.cPrimary_1000};
     -webkit-font-smoothing: antialiased;

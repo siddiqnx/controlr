@@ -5,8 +5,8 @@ import { FavouriteCard } from 'components/Cards/FavouriteCard';
 
 const favourites = [
   {
-    deviceName: 'Air Condsdfsditioner',
-    room: 'Livinadsfasfg Room',
+    deviceName: 'Air Conditioner',
+    room: 'Living Room',
     icon: Generic,
     state: true,
   },
@@ -45,15 +45,17 @@ export const FavouriteList = ({ className }) => {
   return (
     <StyledList className={className}>
       {favourites.map((device) => (
-        <FavouriteCard
-          className='favouriteCard'
-          title={device.deviceName}
-          state={device.state}
-          subtitle={device.room}
-          width='150px'
-          icon={device.icon}
-          link='/rooms'
-        />
+        <li>
+          <FavouriteCard
+            className='favouriteCard'
+            title={device.deviceName}
+            state={device.state}
+            subtitle={device.room}
+            width='150px'
+            icon={device.icon}
+            link='/rooms'
+          />
+        </li>
       ))}
     </StyledList>
   )
