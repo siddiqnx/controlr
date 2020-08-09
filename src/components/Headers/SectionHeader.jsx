@@ -2,6 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { tHeading2_0, tText_s1_n } from 'style/typography';
 const StyledSectionHeader = styled.header`
+
+  margin-bottom: 28px;
+  margin-top: 34px;
+
   .headerGroup {
     display: flex;
     justify-content: space-between;

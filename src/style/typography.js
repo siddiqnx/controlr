@@ -22,6 +22,12 @@ export const tHeadingGroup = css`
   text-transform: uppercase;
 `;
 
+export const tText_l5_b = css`
+  font-weight: bold;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+`;
+
 export const tText_l4_b = css`
   font-weight: bold;
   font-size: 24px;

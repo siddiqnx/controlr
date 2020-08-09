@@ -8,6 +8,7 @@ const StyledCard = styled.div`
   align-items: center;
   flex-direction: column;
   border: 1px solid ${({ theme }) => theme.cPrimary_650};
+  border-left: none;
   width: ${({ width }) => width};
   padding: 22px 5px;
 
@@ -28,12 +29,13 @@ const StyledCard = styled.div`
 
 export const RecentInfoCard = ({
   width = '100%',
-  unit,
-  title = 'U',
-  value
+  unit = 'U',
+  title,
+  value,
+  className
 }) => {
   return (
-    <StyledCard width={width}>
+    <StyledCard width={width} className={className}>
       <div className='value'>{value}<span className='unit'>{unit}</span></div>
       <div className='title'>{title}</div>
     </StyledCard>

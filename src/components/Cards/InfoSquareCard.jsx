@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components';
-import { tLabel_s1 } from 'style/typography';
+import { tLabel_s1, tText_l5_b } from 'style/typography';
 
 const StyledCard = styled.div`
   display: flex;
@@ -31,7 +31,20 @@ const StyledCard = styled.div`
     ${tLabel_s1};
     color: ${({ theme }) => theme.cPrimary_200};
     margin-top: 8px;
+    text-align: center;
   }
+
+  ${({ small }) => small && css`
+    padding: 22px 8px;
+
+    .value {
+      ${tText_l5_b};
+    }
+  `}
+  ${({ outline }) => outline && css`
+    background: none;
+    border: 1px solid ${({ theme }) => theme.cPrimary_650};
+  `}
 `;
 
 export const InfoSquareCard = ({
@@ -41,13 +54,15 @@ export const InfoSquareCard = ({
   unit = null,
   text,
   highlight = false,
+  small = false,
+  outline = false,
   className
 }) => {
 
   const H = 'h' + level;
 
   return (
-    <StyledCard width={width} highlight={highlight} className={className}>
+    <StyledCard small={small} outline={outline} width={width} highlight={highlight} className={className}>
       <div className='value'>
         {value}
         {unit && <span className='unit'>{unit}</span>}
