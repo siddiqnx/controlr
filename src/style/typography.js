@@ -15,6 +15,11 @@ export const tHeading2_0 = css`
   font-size: 16px;
 `;
 
+export const tText_l4_b = css`
+  font-weight: bold;
+  font-size: 24px;
+`;
+
 export const tText_l1_n = css`
   font-weight: normal;
   font-size: 16px;
@@ -33,16 +38,19 @@ export const tText_0_n = css`
 export const tText_0_b = css`
   font-weight: bold;
   font-size: 14px;
+  line-height: 1.4;
 `;
 
 export const tText_s1_n = css`
   font-weight: normal;
   font-size: 12px;
+  line-height: 1.4;
 `;
 
 export const tText_s1_b = css`
   font-weight: bold;
   font-size: 12px;
+  line-height: 1.4;
 `;
 
 export const tButtonLabel_0 = css`
@@ -69,6 +77,7 @@ export const tLabel_s1 = css`
   font-weight: bold;
   font-size: 10px;
   text-transform: uppercase;
+  letter-spacing: 1px;
 `;
 
 export const tLabel_s2 = css`

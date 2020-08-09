@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { tHeading1_0 } from 'style/typography';
 
 
-const PageHeader = styled.div`
+const PageHeader = styled.header`
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -24,9 +24,15 @@ const ButtonGroup = styled.div`
   align-items: center;
 `;
 
-export const MainPageHeader = ({ text, button = null, hamMenu = false }) => {
+export const MainPageHeader = ({
+  text,
+  button = null,
+  hamMenu = false,
+  className
+}) => {
+
   return (
-    <PageHeader>
+    <PageHeader className={className}>
       <MainPageH1>{text}</MainPageH1>
       {/* <ActionButton /> */}
       <ButtonGroup>

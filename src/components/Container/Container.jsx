@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components';
 
 const ContainerDiv = styled.div`
-  padding: 38px 24px;
+  padding: 38px 24px 80px;
 `;
 
-export const Container = ({ children }) => {
+export const Container = ({ children, className }) => {
   return (
-    <ContainerDiv>
+    <ContainerDiv className={className}>
       {children}
     </ContainerDiv>
   )

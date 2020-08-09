@@ -10,6 +10,7 @@ export default {
   cPrimary_600: '#818DBA',
   cPrimary_500: '#939CC0',
   cPrimary_400: '#B1BBE0',
+  cPrimary_200: 'ECEFFA',
   cPrimary_100: '#ECEFFA',
   cAccent1_0: '#1541E0',
   cAccent1_100: '#486EF6',
@@ -17,5 +18,12 @@ export default {
   cAccent_3: '#5FDEFA',
   cNegative_0: '#F64848',
   cPositive_0: '#15E097',
-  cGradient_1: 'linear-gradient(275deg, #204DF0 0%, 0831C7 100%)',
+
+  cWhite_60: 'rgba(255, 255, 255, .6)',
+
+  cGradient_1: 'linear-gradient(275deg, #204DF0 0%, #0831C7 100%)',
+
+  bsShadow_1: '0 8px 25px 0 rgba(0, 0, 0, .25)',
+
+  brRadius_1: '15px',
 }
