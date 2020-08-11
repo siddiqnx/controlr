@@ -10,7 +10,7 @@ const StyledCard = styled.div`
   font-weight: bold;
   width: ${({ width }) => width};
   border-radius: ${({ theme }) => theme.brRadius_1};
-  padding: 34px 22px;
+  padding: 34px 5px;
   background: ${({ theme }) => theme.cPrimary_800};
   box-shadow: ${({ theme }) => theme.bsShadow_1};
   

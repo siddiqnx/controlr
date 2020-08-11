@@ -1,12 +1,12 @@
 import React from 'react'
 import { SectionHeader } from 'components/Headers/SectionHeader';
-import { HighestUsageOverallTable } from './HighestUsageOverallTable';
+import { HighestUsageTable } from './HighestUsageTable';
 
-export const HighestUsageOverall = () => {
+export const HighestUsage = ({ usage }) => {
   return (
     <section>
       <SectionHeader text='Highest Usage' level={2} />
-      <HighestUsageOverallTable />
+      <HighestUsageTable usage={usage} />
     </section>
   )
 }

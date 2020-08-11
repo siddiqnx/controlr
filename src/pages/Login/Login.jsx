@@ -3,7 +3,7 @@ import { Container } from 'components/Container/Container';
 import styled from 'styled-components';
 import { tHeading1_0 } from 'style/typography';
 import { Input } from 'components/Input/Input';
-import { Button } from 'components/Button/Button';
+import { Button } from 'components/Buttons/Button';
 import { useHistory } from 'react-router-dom';
 
 const Heading = styled.h1`
@@ -13,9 +13,7 @@ const Heading = styled.h1`
   margin-bottom: 50px;
 `;
 
-const LoginContainer = styled.div`
-
-`;
+const LoginContainer = styled.div``;
 
 export const Login = ({ authenticate }) => {
   const [email, setEmail] = useState('');

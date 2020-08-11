@@ -1,12 +1,14 @@
 import React from 'react'
-import styled from 'styled-components';
-
-import { MainPageHeader } from 'components/Headers/MainPageHeader';
 import { Container } from 'components/Container/Container';
+import { SecondaryPageHeader } from 'components/Headers/SecondaryPageHeader';
+import { ActionButton } from 'components/Buttons/ActionButton';
+import AddIcon from 'images/icons/Plus';
+import { InfoSquares } from 'components/SectionContainers/InfoSquares';
 import { InfoSquareCard } from 'components/Cards/InfoSquareCard';
+import styled from 'styled-components';
+import { Devices } from './Devices/Devices';
 import { RecentStats } from 'pages/Common/RecentStats/RecentStats';
-import { UsageToday } from './UsageToday/UsageToday';
-import { HighestUsage } from '../Common/HighestUsage/HighestUsage';
+import { HighestUsage } from 'pages/Common/HighestUsage/HighestUsage';
 
 const recentStats = [
   {
@@ -57,75 +59,37 @@ let highestUsage = [
 
 highestUsage = highestUsage.map(usage => ({
   title: usage.deviceName,
-  subtitle: usage.roomName,
   percentage: usage.percentage,
   value: usage.value,
   unit: usage.unit
 }));
 
 const StyledContainer = styled(Container)`
-
-`;
-
-const InfoSquares = styled.section`
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  gap: 8px;
-
-  .infoSquareCard {
-    margin-top: 24px;
-    flex-grow: 0;
-    flex-shrink: 0;
+  .secondaryPageHeader {
+    margin-bottom: 24px;
   }
 `;
 
-export const Usage = () => {
+const actionBtn = (<ActionButton link to='/events'><AddIcon width='20px' height='20px' /></ActionButton>);
+
+
+export const RoomDetail = () => {
   return (
     <StyledContainer>
-      <MainPageHeader text={'Usage'} hamMenu />
-
+      <SecondaryPageHeader
+        className='secondaryPageHeader'
+        text='Living Room'
+        actionBtn={actionBtn}
+        hamMenu
+      />
       <InfoSquares>
-        <InfoSquareCard
-          small
-          width='120px'
-          className='infoSquareCard'
-          level={2}
-          value={13.93}
-          unit='U'
-          text='Power Usage'
-          highlight
-        />
-        <InfoSquareCard
-          small
-          width='120px'
-          className='infoSquareCard'
-          level={2}
-          value={44}
-          unit='/52'
-          text='Devices Online'
-          outline
-        />
-        <InfoSquareCard
-          small
-          width='120px'
-          className='infoSquareCard'
-          level={2}
-          value={5}
-          unit='/9'
-          text='Rooms Online'
-          outline
-        />
+        <InfoSquareCard className='infoSquareCard' level={2} value={4} unit='/8' text='Devies Online' />
+        <InfoSquareCard className='infoSquareCard' level={2} value={3.92} unit='U' text='Power Usage' highlight />
       </InfoSquares>
 
+      <Devices />
       <RecentStats recentStats={recentStats} />
-
-      <UsageToday />
-
       <HighestUsage usage={highestUsage} />
-
     </StyledContainer>
   )
 }
-
-

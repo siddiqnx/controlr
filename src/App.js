@@ -7,6 +7,7 @@ import { Rules } from 'pages/Rules/Rules';
 import { Events } from 'pages/Events/Events';
 import { Navbar } from 'components/Navbar/Navbar';
 import { Login } from 'pages/Login/Login';
+import { RoomDetail } from 'pages/RoomDetail/RoomDetail';
 
 const App = () => {
   return (
@@ -16,6 +17,9 @@ const App = () => {
           <Switch>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path='/rooms/:id'>
+              <RoomDetail />
             </Route>
             <Route path="/rooms">
               <Rooms />

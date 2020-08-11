@@ -1,30 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HighestUsageDeviceRow } from 'components/TableRows/HighestUsageDeviceRow';
+import { HighestUsageDeviceRow } from 'components/TableRows/HighestUsageRow';
 
-const highestUsage = [
-  {
-    deviceName: 'Air Conditioner',
-    roomName: 'Living Room',
-    percentage: 52.5,
-    value: 10.23,
-    unit: 'U'
-  },
-  {
-    deviceName: 'Refrigirator',
-    roomName: 'Bedroom',
-    percentage: 30.5,
-    value: 10.23,
-    unit: 'U'
-  },
-  {
-    deviceName: 'TV',
-    roomName: 'Kitchen',
-    percentage: 10.5,
-    value: 10.23,
-    unit: 'U'
-  }
-];
+
 
 const StyledTable = styled.table`
   display: grid;
@@ -42,7 +20,7 @@ const StyledTable = styled.table`
 
 `;
 
-export const HighestUsageOverallTable = () => {
+export const HighestUsageTable = ({ usage }) => {
   return (
     <StyledTable>
       <thead>
@@ -53,11 +31,11 @@ export const HighestUsageOverallTable = () => {
         </tr>
       </thead>
       <tbody>
-        {highestUsage.map((device, key) => (
+        {usage.map((device, key) => (
           <HighestUsageDeviceRow
             key={key}
-            deviceName={device.deviceName}
-            roomName={device.roomName}
+            title={device.title}
+            subtitle={device.subtitle && device.subtitle}
             percentage={device.percentage}
             value={device.value}
             unit={device.unit}

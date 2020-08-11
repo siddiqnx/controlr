@@ -26,8 +26,8 @@ const ButtonGroup = styled.div`
 
 export const MainPageHeader = ({
   text,
-  button = null,
-  hamMenu = false,
+  actionBtn,
+  hamMenu,
   className
 }) => {
 
@@ -36,8 +36,8 @@ export const MainPageHeader = ({
       <MainPageH1>{text}</MainPageH1>
       {/* <ActionButton /> */}
       <ButtonGroup>
-        {button &&
-          button
+        {actionBtn &&
+          actionBtn
         }
         {hamMenu &&
           <HamburgerIcon width='24px' height='24px' />

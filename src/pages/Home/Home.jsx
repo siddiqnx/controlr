@@ -7,6 +7,7 @@ import { InfoSquareCard } from 'components/Cards/InfoSquareCard';
 import { Favourites } from './Favourites/Favourites';
 import { Scenes } from './Scenes/Scenes';
 import { Groups } from './Groups/Groups';
+import { InfoSquares } from 'components/SectionContainers/InfoSquares';
 
 const StyledContainer = styled(Container)`
   .mainPageHeader {
@@ -16,15 +17,6 @@ const StyledContainer = styled(Container)`
   .sectionHeader {
     margin-top: 34px;
     margin-bottom: 28px;
-  }
-`;
-
-const InfoSquares = styled.section`
-  display: flex;
-  justify-content: space-around;
-
-  .infoSquareCard {
-    margin: 0 8px ;
   }
 `;
 

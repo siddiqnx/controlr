@@ -42,6 +42,10 @@ const GlobalStyle = createGlobalStyle`
   :focus {outline:none;}
   ::-moz-focus-inner {border:0;}
 
+  a > svg {
+    vertical-align: middle;
+  }
+
 `;
 
 export default GlobalStyle;

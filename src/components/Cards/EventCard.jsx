@@ -63,7 +63,7 @@ const StyledCard = styled.div`
 
     .event {
       color: ${({ theme }) => theme.cPrimary_400};
-      {tText_s2_n};
+      ${tText_s2_n};
       margin-top: 12px;
     }
 

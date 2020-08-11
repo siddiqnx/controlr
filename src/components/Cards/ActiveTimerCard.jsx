@@ -68,11 +68,12 @@ export const ActiveTimerCard = ({
   hours,
   icon: Icon,
   width,
+  link,
   className
 }) => {
   return (
     <StyledCard width={width} className={className}>
-      <Link className='link' to='/rooms'>
+      <Link className='link' to={link}>
         <div className='icon'>
           <Icon width='24px' height='24px' />
         </div>

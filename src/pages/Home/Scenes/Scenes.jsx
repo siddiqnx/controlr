@@ -1,7 +1,7 @@
 import React from 'react'
 import { SectionHeader } from 'components/Headers/SectionHeader';
 import { SceneList } from './SceneList';
-import { Button } from 'components/Button/Button';
+import { Button } from 'components/Buttons/Button';
 
 export const Scenes = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { SectionHeader } from 'components/Headers/SectionHeader';
-import { Button } from 'components/Button/Button';
+import { Button } from 'components/Buttons/Button';
 import { GroupList } from './GroupList';
 
 

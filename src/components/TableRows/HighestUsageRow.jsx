@@ -4,12 +4,12 @@ import { tText_0_b, tLabel_s1 } from 'style/typography';
 
 const StyledTableRow = styled.tr`
 
-  .device {
+  .item {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 
-    .room {
+    .subtitle {
       ${tLabel_s1};
       color: ${({ theme }) => theme.cPrimary_600};
       margin-top: 6px;
@@ -42,8 +42,8 @@ const StyledTableRow = styled.tr`
 `;
 
 export const HighestUsageDeviceRow = ({
-  deviceName,
-  roomName,
+  title,
+  subtitle,
   percentage,
   value,
   unit,
@@ -51,9 +51,9 @@ export const HighestUsageDeviceRow = ({
 }) => {
   return (
     <StyledTableRow className={className} percentage={percentage}>
-      <td className='device'>
-        <div className='deviceName'>{deviceName}</div>
-        <div className='room'>{roomName}</div>
+      <td className='item'>
+        <div className='title'>{title}</div>
+        {subtitle && <div className='subtitle'>{subtitle}</div>}
       </td>
       <td className='percentage'><span className='line'></span>{percentage}%</td>
       <td className='value'>{value} <span className='unit'>{unit}</span></td>

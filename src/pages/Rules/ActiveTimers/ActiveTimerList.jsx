@@ -45,6 +45,7 @@ export const ActiveTimerList = () => {
       {timers.map((timer, i) => (
         <li key={i}>
           <ActiveTimerCard
+            link='/rooms/1'
             className='activeTimerCard'
             {...timer}
           />

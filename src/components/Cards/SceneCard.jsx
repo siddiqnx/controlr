@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import ThreeDot from 'images/icons/3DotMenuHorizontal';
 import { tText_0_b, tText_s1_n } from 'style/typography';
-import { Button } from 'components/Button/Button';
+import { Button } from 'components/Buttons/Button';
 
 const StyledCard = styled.div`
   display: flex;
