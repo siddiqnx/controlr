@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { MainPageHeader } from 'components/Headers/MainPageHeader';
 import { Container } from 'components/Container/Container';
 import { InfoSquareCard } from 'components/Cards/InfoSquareCard';
-import { Favourites } from './Favourites';
-import { Scenes } from './Scenes';
-import { Groups } from './Groups';
+import { Favourites } from './Favourites/Favourites';
+import { Scenes } from './Scenes/Scenes';
+import { Groups } from './Groups/Groups';
 
 const StyledContainer = styled(Container)`
   .mainPageHeader {

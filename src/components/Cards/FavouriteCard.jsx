@@ -16,7 +16,7 @@ const StyledCard = styled.div`
 
   .icon {
     ${({ state }) => state && css`
-      color: ${({ theme }) => theme.cAccent1_0};
+      color: ${({ theme }) => theme.cAccebt1_300};
     `}
   }
 
@@ -42,10 +42,10 @@ const StyledCard = styled.div`
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: ${({ theme }) => theme.cNegative_0};
+    background-color: ${({ theme }) => theme.cNegative_100};
     
     ${({ state }) => state && css`
-      background-color: ${({ theme }) => theme.cPositive_0};
+      background-color: ${({ theme }) => theme.cPositive_100};
     `}
   }
 `;

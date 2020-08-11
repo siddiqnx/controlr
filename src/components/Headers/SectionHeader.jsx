@@ -11,7 +11,7 @@ const StyledSectionHeader = styled.header`
     justify-content: space-between;
     ${tHeading2_0};
     color: ${({ theme }) => theme.cPrimary_400};
-    margin-bottom: 16px;
+    margin-bottom: 6px;
   }
 
   .description {

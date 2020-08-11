@@ -31,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
     font-size: 14px;
+    line-height: 1.4;
     color: ${({ theme }) => theme.cPrimary_100};
     background: ${({ theme }) => theme.cPrimary_1000};
     -webkit-font-smoothing: antialiased;

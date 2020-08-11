@@ -12,12 +12,25 @@ export default {
   cPrimary_400: '#B1BBE0',
   cPrimary_200: 'ECEFFA',
   cPrimary_100: '#ECEFFA',
-  cAccent1_0: '#1541E0',
-  cAccent1_100: '#486EF6',
-  cAccent2_0: '#15E097',
-  cAccent_3: '#5FDEFA',
-  cNegative_0: '#F64848',
-  cPositive_0: '#15E097',
+
+  cAccent1_300: '#1541E0',
+  cAccent1_200: '#486EF6',
+  cAccent1_100: '#7694FF',
+
+  cAccent2: '#15E097',
+
+  cAccent3: '#5FDEFA',
+
+  cAccent4_400: '#067446',
+  cAccent4_300: '#3CB07F',
+  cAccent4_200: '#63E4AE',
+  cAccent4_100: '#9EFFD6',
+
+  cNegative_200: '#B41515',
+  cNegative_100: '#F64848',
+
+  cPositive_200: '#009F66',
+  cPositive_100: '#15E097',
 
   cWhite_60: 'rgba(255, 255, 255, .6)',
 

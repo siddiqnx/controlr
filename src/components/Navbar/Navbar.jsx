@@ -8,7 +8,7 @@ import UsageIcon from 'images/icons/Usage';
 import RulesIcon from 'images/icons/Rules';
 import EventsIcon from 'images/icons/Events';
 
-import { tLabel_s2 } from 'style/typography';
+import { tLabel_s2_n } from 'style/typography';
 
 const Nav = styled.nav`
   position: fixed;
@@ -28,7 +28,7 @@ const Nav = styled.nav`
       display: flex;
       justify-content: center;
       align-items: center;
-      ${tLabel_s2};
+      ${tLabel_s2_n};
       text-align: center;
       color: ${({ theme }) => theme.cPrimary_600};
 

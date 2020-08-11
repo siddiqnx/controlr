@@ -66,6 +66,12 @@ export const tText_s1_b = css`
   line-height: 1.4;
 `;
 
+export const tText_s2_n = css`
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 1.4;
+`;
+
 export const tButtonLabel_0 = css`
   font-weight: bold;
   font-size: 14px;
@@ -93,8 +99,15 @@ export const tLabel_s1 = css`
   letter-spacing: 1px;
 `;
 
-export const tLabel_s2 = css`
+export const tLabel_s2_n = css`
   font-weight: normal;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+`;
+
+export const tLabel_s2_b = css`
+  font-weight: bold;
   font-size: 8px;
   text-transform: uppercase;
   letter-spacing: .6px;

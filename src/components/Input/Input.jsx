@@ -18,7 +18,7 @@ const StyledInput = styled.div`
    :focus,
    :-webkit-autofill  {
      background-color: transparent;
-     border: 1px solid ${({ theme }) => theme.cAccent1_0};
+     border: 1px solid ${({ theme }) => theme.cAccebt1_300};
    }
 
     :not(:placeholder-shown) ~ label,

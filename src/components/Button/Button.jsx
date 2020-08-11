@@ -4,13 +4,13 @@ import { tButtonLabel_0, tButtonLabel_s1, tLabel_0 } from 'style/typography';
 
 const StyledButton = styled.button`
   all: unset;
-  color: ${ ({ theme }) => theme.cAccent1_100};
+  color: ${ ({ theme }) => theme.cAccebt1_200};
   border: 1px solid currentColor;
   border-radius: 28px;
 
   ${(props) => props.solid && css`
     border: none;
-    background-color: ${({ theme }) => theme.cAccent1_0};
+    background-color: ${({ theme }) => theme.cAccebt1_300};
     color: ${({ theme }) => theme.cPrimary_100};
   `}
 

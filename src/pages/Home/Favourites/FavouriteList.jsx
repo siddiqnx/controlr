@@ -36,16 +36,13 @@ const StyledList = styled.ul`
   flex-wrap: nowrap;
   overflow-x: auto;
 
-  .favouriteCard {
-    
-  }
 `;
 
 export const FavouriteList = ({ className }) => {
   return (
     <StyledList className={className}>
-      {favourites.map((device) => (
-        <li>
+      {favourites.map((device, i) => (
+        <li key={i}>
           <FavouriteCard
             className='favouriteCard'
             title={device.deviceName}

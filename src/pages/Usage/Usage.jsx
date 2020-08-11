@@ -25,8 +25,6 @@ const InfoSquares = styled.section`
   }
 `;
 
-
-
 export const Usage = () => {
   return (
     <StyledContainer>

@@ -11,6 +11,7 @@ export const Scenes = () => {
         text='Scenes'
         level={2}
         actionBtn={<Button sm>Open</Button>}
+        description='Click on a scene to activate it'
       />
 
       <SceneList />

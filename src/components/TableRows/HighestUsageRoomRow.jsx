@@ -14,14 +14,14 @@ const StyledTableRow = styled.tr`
     --mf: .7;
     display: inline-block;
     height: 2px;
-    background-color: ${({ theme }) => theme.cAccent2_0};
+    background-color: ${({ theme }) => theme.cAccent2};
     width: ${({ percentage }) => `calc(${percentage}% * var(--mf))`};
     margin-right: 5px;
-    vertical-align: bottom;
+    vertical-align: middle;
   }
 
   .percentage {
-    color: ${({ theme }) => theme.cAccent2_0};
+    color: ${({ theme }) => theme.cAccent2};
     ${tLabel_s1};
     vertical-align: bottom;
   }

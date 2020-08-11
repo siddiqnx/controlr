@@ -4,7 +4,7 @@ import { tText_0_b, tLabel_s1 } from 'style/typography';
 
 const StyledTableRow = styled.tr`
 
-  .roomName {
+  .device {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -12,7 +12,7 @@ const StyledTableRow = styled.tr`
     .room {
       ${tLabel_s1};
       color: ${({ theme }) => theme.cPrimary_600};
-      margin-top: 4px;
+      margin-top: 6px;
     }
   }
 
@@ -20,14 +20,14 @@ const StyledTableRow = styled.tr`
     --mf: .7;
     display: inline-block;
     height: 2px;
-    background-color: ${({ theme }) => theme.cAccent2_0};
+    background-color: ${({ theme }) => theme.cAccent2};
     width: ${({ percentage }) => `calc(${percentage}% * var(--mf))`};
     margin-right: 5px;
-    vertical-align: bottom;
+    vertical-align: middle;
   }
 
   .percentage {
-    color: ${({ theme }) => theme.cAccent2_0};
+    color: ${({ theme }) => theme.cAccent2};
     ${tLabel_s1};
     vertical-align: bottom;
   }
@@ -51,9 +51,9 @@ export const HighestUsageDeviceRow = ({
 }) => {
   return (
     <StyledTableRow className={className} percentage={percentage}>
-      <td className='roomName'>
-        <div class='device'>{deviceName}</div>
-        <div class='room'>{roomName}</div>
+      <td className='device'>
+        <div className='deviceName'>{deviceName}</div>
+        <div className='room'>{roomName}</div>
       </td>
       <td className='percentage'><span className='line'></span>{percentage}%</td>
       <td className='value'>{value} <span className='unit'>{unit}</span></td>

@@ -22,8 +22,8 @@ const StyledList = styled.ul`
 export const GroupList = () => {
   return (
     <StyledList>
-      {groups.map((group) => (
-        <li>
+      {groups.map((group, i) => (
+        <li key={i}>
           <GroupCard
             className='groupCard'
             title={group.groupName}

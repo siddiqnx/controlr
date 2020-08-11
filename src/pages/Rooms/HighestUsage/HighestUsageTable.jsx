@@ -2,6 +2,27 @@ import React from 'react'
 import styled from 'styled-components'
 import { HighestUsageRoomRow } from 'components/TableRows/HighestUsageRoomRow';
 
+const highestUsage = [
+  {
+    roomName: 'Living Room',
+    percentage: 52.5,
+    value: 10.23,
+    unit: 'U'
+  },
+  {
+    roomName: 'Bedroom',
+    percentage: 30.5,
+    value: 10.23,
+    unit: 'U'
+  },
+  {
+    roomName: 'Kitchen',
+    percentage: 10.5,
+    value: 10.23,
+    unit: 'U'
+  }
+];
+
 const StyledTable = styled.table`
   display: grid;
   grid-template-columns: 1fr 1fr 60px;
@@ -18,7 +39,7 @@ const StyledTable = styled.table`
 
 `;
 
-export const HighestUsageTable = ({ rooms }) => {
+export const HighestUsageTable = () => {
   return (
     <StyledTable>
       <thead>
@@ -29,7 +50,7 @@ export const HighestUsageTable = ({ rooms }) => {
         </tr>
       </thead>
       <tbody>
-        {rooms.map((room, key) => (
+        {highestUsage.map((room, key) => (
           <HighestUsageRoomRow
             key={key}
             roomName={room.roomName}

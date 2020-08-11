@@ -9,7 +9,7 @@ const scenes = [
     numDevicesOff: 3,
   },
   {
-    sceneName: 'Back from Osdfffice',
+    sceneName: 'Back from Office',
     numDevicesOn: 4,
     numDevicesOff: 3,
   },
@@ -38,8 +38,8 @@ const StyledList = styled.ul`
 export const SceneList = () => {
   return (
     <StyledList>
-      {scenes.map((scene) => (
-        <li>
+      {scenes.map((scene, i) => (
+        <li key={i}>
           <SceneCard
             className='sceneCard'
             link='/rooms'
