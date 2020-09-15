@@ -15,13 +15,13 @@ export const RoomList = ({ rooms }) => {
 
   return (
     <StyledList>
-      {rooms.map((room, i) => (
-        <li key={i}>
+      {rooms.map((room) => (
+        <li key={room.id}>
           <RoomCard
-            title={room.roomName}
-            numDevicesOn={room.numDevicesOn}
-            numDevicesTotal={room.numDevicesTotal}
-            link={`${location.pathname}/1`}
+            title={room.name}
+            numDevicesOn={room.num_devices_on}
+            numDevicesTotal={room.num_devices_total}
+            link={`${location.pathname}/${room.id}`}
           />
         </li>
       ))}

@@ -3,27 +3,8 @@ import styled from 'styled-components'
 import { GroupHeader } from 'components/Headers/GroupHeader';
 import { RoomList } from './RoomList';
 import groupByProperty from 'utils/groupByProperty';
-
-const rooms = [
-  {
-    roomName: 'Living Room',
-    numDevicesOn: 4,
-    numDevicesTotal: 10,
-    roomGroup: 'Ground Floor'
-  },
-  {
-    roomName: 'Bed Room',
-    numDevicesOn: 4,
-    numDevicesTotal: 10,
-    roomGroup: 'First Floor'
-  },
-  {
-    roomName: 'Kitchen',
-    numDevicesOn: 4,
-    numDevicesTotal: 10,
-    roomGroup: 'Ground Floor'
-  },
-];
+import { fetchRoomList } from 'requests/rooms/fetchRoomList';
+import { useQuery } from 'react-query';
 
 const StyledList = styled.ul`
   .roomGroupHeader {
@@ -32,14 +13,17 @@ const StyledList = styled.ul`
 `;
 
 export const RoomGroupList = () => {
+  const { data: rooms } = useQuery('rooms', fetchRoomList);
 
-  const roomGroups = groupByProperty(rooms, 'roomGroup');
+  let roomGroups = null;
+  if (rooms)
+    roomGroups = groupByProperty(rooms, 'room_group');
 
   return (
     <StyledList>
-      {Object.entries(roomGroups).map(([roomGroup, rooms], i) => (
-        <li key={i}>
-          <GroupHeader lined className='roomGroupHeader' text={roomGroup} />
+      {roomGroups && Object.entries(roomGroups).map(([roomGroup, rooms]) => (
+        <li key={roomGroup}>
+          <GroupHeader lined className='roomGroupHeader' text={rooms[0].room_group_name} />
           <RoomList rooms={rooms} />
         </li>
       ))}

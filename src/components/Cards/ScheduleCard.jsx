@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 import { tText_0_b, tLabel_s1, tLabel_s2_b, tLabel_0 } from 'style/typography';
+import SwitchBtn from 'react-switch';
+import { useMutation, queryCache } from 'react-query';
+import { updateScheduleState } from 'requests/schedules/updateScheduleState';
 
 const StyledCard = styled.div`
   background: ${({ theme }) => theme.cPrimary_925};
@@ -65,22 +68,30 @@ const StyledCard = styled.div`
     }
 
   }
+
+  .switch {
+    margin-left: auto;
+  }
 `;
 
 export const ScheduleCard = ({
+  id,
   deviceName,
   roomName,
   roomGroup,
-  days,
-  onSchedule,
+  daysOfWeek,
+  stateTrigger,
   time,
-  state,
+  scheduleState,
   width,
   icon: Icon,
   className
 }) => {
+  const [mutateScheduleState] = useMutation(updateScheduleState, {
+    onSuccess: () => queryCache.invalidateQueries(['schedules', {}])
+  });
   return (
-    <StyledCard className={className} schedule={onSchedule}>
+    <StyledCard className={className} schedule={stateTrigger}>
       <Link to='/rooms'>
         <header>
           <span className='icon'><Icon width='30px' height='30px' /></span>
@@ -88,14 +99,28 @@ export const ScheduleCard = ({
             <div className='deviceName'>{deviceName}</div>
             <div className='room'>{roomName} • {roomGroup}</div>
           </div>
-          <span className='menu'></span>
+          <span className='switch'>
+            <SwitchBtn
+              width={28}
+              height={14}
+              uncheckedIcon={false}
+              checkedIcon={false}
+              handleDiameter={10}
+              offColor='#818DBA'
+              onColor='#486EF6'
+              checked={scheduleState}
+              offHandleColor='#2B3045'
+              onHandleColor='#2B3045'
+              onChange={() => mutateScheduleState({ scheduleId: id, state_change: !scheduleState })}
+            />
+          </span>
         </header>
         <footer>
-          <span className='schedule'>{onSchedule ? 'On' : 'Off'}</span>
+          <span className='schedule'>{stateTrigger ? 'On' : 'Off'}</span>
           <ul className='days'>
-            {days.length === 7
+            {daysOfWeek.length === 7
               ? <li>Everyday</li>
-              : days.map((day, i) => (
+              : daysOfWeek.map((day, i) => (
                 <li key={i}>{day}</li>
               ))
             }

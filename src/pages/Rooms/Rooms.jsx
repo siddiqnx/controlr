@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { MainPageHeader } from 'components/Headers/MainPageHeader';
 import { Container } from 'components/Container/Container';
 import { RoomGroupList } from './RoomGroupList/RoomGroupList';
@@ -6,34 +6,10 @@ import { HighestUsage } from 'pages/Common/HighestUsage/HighestUsage';
 import styled from 'styled-components';
 import { ActionButton } from 'components/Buttons/ActionButton';
 import AddIcon from 'images/icons/Plus';
+import { useMutation, queryCache } from 'react-query';
+import { fetchRoomsUsageList } from 'requests/usage/fetchRoomsUsageList';
+import { DateTime, Duration } from 'luxon';
 
-let highestUsage = [
-  {
-    roomName: 'Living Room',
-    percentage: 52.5,
-    value: 10.23,
-    unit: 'U'
-  },
-  {
-    roomName: 'Bedroom',
-    percentage: 30.5,
-    value: 10.23,
-    unit: 'U'
-  },
-  {
-    roomName: 'Kitchen',
-    percentage: 10.5,
-    value: 10.23,
-    unit: 'U'
-  }
-];
-
-highestUsage = highestUsage.map(usage => ({
-  title: usage.roomName,
-  percentage: usage.percentage,
-  value: usage.value,
-  unit: usage.unit
-}))
 
 const StyledContainer = styled(Container)`
   .sectionHeader {
@@ -42,14 +18,34 @@ const StyledContainer = styled(Container)`
   }
 `;
 
-const actionBtn = (<ActionButton link to='/events'><AddIcon width='20px' height='20px' /></ActionButton>);
+const actionBtn = (
+  <ActionButton link='/rooms/add'>
+    <AddIcon width='20px' height='20px' />
+  </ActionButton>
+);
 
 export const Rooms = () => {
+  const [roomsUsageList, setRoomsUsageList] = useState(queryCache.getQueryData('roomsUsageList'));
+  const [getRoomsUsageList] = useMutation(fetchRoomsUsageList, {
+    onSuccess: (data) => {
+      queryCache.setQueryData('roomsUsageList', data);
+      setRoomsUsageList(data);
+    }
+  });
+
+  useEffect(() => {
+    getRoomsUsageList({
+      startTs: DateTime.utc().minus(Duration.fromObject({ days: 7 })).toISO(),
+      endTs: DateTime.utc().toISO(),
+    })
+  }, []);
+
+
   return (
     <StyledContainer>
       <MainPageHeader text={'Rooms'} hamMenu actionBtn={actionBtn} />
       <RoomGroupList />
-      <HighestUsage usage={highestUsage} />
+      <HighestUsage title='Highest Usage' description='Highest energy usage data of rooms during the last 7 days' usageData={roomsUsageList} />
     </StyledContainer>
   )
 }

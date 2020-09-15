@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import HamburgerIcon from 'images/icons/HamburgerMenu';
 import styled from 'styled-components';
 import { tHeading1_0 } from 'style/typography';
+import { SidebarContext } from 'contexts/SidebarContext';
 
 
 const PageHeader = styled.header`
@@ -30,17 +31,20 @@ export const MainPageHeader = ({
   hamMenu,
   className
 }) => {
-
+  const { setOpen } = useContext(SidebarContext);
   return (
     <PageHeader className={className}>
       <MainPageH1>{text}</MainPageH1>
+
       {/* <ActionButton /> */}
       <ButtonGroup>
         {actionBtn &&
           actionBtn
         }
         {hamMenu &&
-          <HamburgerIcon width='24px' height='24px' />
+          <button onClick={() => setOpen((open) => !open)}>
+            <HamburgerIcon width='24px' height='24px' />
+          </button>
         }
       </ButtonGroup>
     </PageHeader>

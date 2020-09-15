@@ -3,31 +3,44 @@ import styled from 'styled-components'
 import { tText_0_b, tLabel_s1 } from 'style/typography';
 
 const StyledTableRow = styled.tr`
+  td {
+    min-width: 0;
+    overflow: hidden;
+  }
 
   .item {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 
+    .title {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden
+    }
+
     .subtitle {
       ${tLabel_s1};
       color: ${({ theme }) => theme.cPrimary_600};
       margin-top: 6px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
   }
 
   .line {
-    --mf: .7;
+    --mul: .7;
     display: inline-block;
     height: 2px;
-    background-color: ${({ theme }) => theme.cAccent2};
-    width: ${({ percentage }) => `calc(${percentage}% * var(--mf))`};
+    background-color: ${({ theme }) => theme.cAccent3};
+    width: ${({ percentage }) => `calc(${percentage}% * var(--mul))`};
     margin-right: 5px;
     vertical-align: middle;
   }
 
   .percentage {
-    color: ${({ theme }) => theme.cAccent2};
+    color: ${({ theme }) => theme.cAccent3};
     ${tLabel_s1};
     vertical-align: bottom;
   }
@@ -41,7 +54,7 @@ const StyledTableRow = styled.tr`
   }
 `;
 
-export const HighestUsageDeviceRow = ({
+export const HighestUsageRow = ({
   title,
   subtitle,
   percentage,

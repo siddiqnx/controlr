@@ -57,19 +57,17 @@ export const FavouriteCard = ({
   state,
   width = '100%',
   className,
-  link
+  onClick
 }) => {
 
   const SVGIcon = icon;
 
   return (
-    <StyledCard width={width} state={state} className={className}>
-      <Link to={link}>
-        <div className='icon'><SVGIcon width='30px' height='30px' /></div>
-        <div className='title'>{title}</div>
-        <div className='subtitle'>{subtitle}</div>
-        <span className='state'></span>
-      </Link>
+    <StyledCard onClick={onClick} width={width} state={state} className={className}>
+      <div className='icon'><SVGIcon width='30px' height='30px' /></div>
+      <div className='title'>{title}</div>
+      <div className='subtitle'>{subtitle}</div>
+      <span className='state'></span>
     </StyledCard>
   )
 }

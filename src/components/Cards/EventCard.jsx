@@ -86,7 +86,6 @@ export const EventCard = ({
   event,
   stateChange,
   time,
-  day,
   icon: Icon,
   className,
   width = '328px'

@@ -5,15 +5,24 @@ import GlobalStyle from 'style/globalStyle';
 import Reset from 'style/reset'
 import theme from 'style/theme';
 
+import { AuthProvider } from 'contexts/AuthContext';
 import { ThemeProvider } from 'styled-components';
+import { UserProvider } from 'contexts/UserContext';
+import { SidebarProvider } from 'contexts/SidebarContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Reset />
-      <GlobalStyle />
-      <App />
-    </ThemeProvider>
+    <AuthProvider>
+      <UserProvider>
+        <ThemeProvider theme={theme}>
+          <SidebarProvider>
+            <Reset />
+            <GlobalStyle />
+            <App />
+          </SidebarProvider>
+        </ThemeProvider>
+      </UserProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

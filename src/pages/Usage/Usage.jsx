@@ -1,70 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 
 import { MainPageHeader } from 'components/Headers/MainPageHeader';
 import { Container } from 'components/Container/Container';
 import { InfoSquareCard } from 'components/Cards/InfoSquareCard';
-import { RecentStats } from 'pages/Common/RecentStats/RecentStats';
+import { RecentUsage } from 'pages/Common/RecentUsage/RecentUsage';
 import { UsageToday } from './UsageToday/UsageToday';
-import { HighestUsage } from '../Common/HighestUsage/HighestUsage';
+import { HighestUsage } from 'pages/Common/HighestUsage/HighestUsage';
+import { useQuery } from 'react-query';
+import { fetchBuildingCurrentStats } from 'requests/buildings/fetchBuildingCurrentStats';
+import { fetchDevicesUsageList } from 'requests/usage/fetchDevicesUsageList';
+import { fetchRecentUsage } from 'requests/usage/fetchRecentUsage';
+import { useMutation, queryCache } from 'react-query';
+import { DateTime, Duration } from 'luxon';
 
-const recentStats = [
-  {
-    period: 'Today',
-    value: 1.13,
-    unit: 'U',
-  },
-  {
-    period: 'Last 7 days',
-    value: 8.13,
-    unit: 'U',
-  },
-  {
-    period: 'Last 30 days',
-    value: 80.13,
-    unit: 'U',
-  },
-  {
-    period: 'Last 60 days',
-    value: 150.13,
-    unit: 'U',
-  },
-];
-
-let highestUsage = [
-  {
-    deviceName: 'Air Conditioner',
-    roomName: 'Living Room',
-    percentage: 52.5,
-    value: 10.23,
-    unit: 'U'
-  },
-  {
-    deviceName: 'Refrigirator',
-    roomName: 'Bedroom',
-    percentage: 30.5,
-    value: 10.23,
-    unit: 'U'
-  },
-  {
-    deviceName: 'TV',
-    roomName: 'Kitchen',
-    percentage: 10.5,
-    value: 10.23,
-    unit: 'U'
-  }
-];
-
-highestUsage = highestUsage.map(usage => ({
-  title: usage.deviceName,
-  subtitle: usage.roomName,
-  percentage: usage.percentage,
-  value: usage.value,
-  unit: usage.unit
-}));
 
 const StyledContainer = styled(Container)`
-
 `;
 
 const InfoSquares = styled.section`
@@ -81,17 +32,46 @@ const InfoSquares = styled.section`
 `;
 
 export const Usage = () => {
+  const [devicesUsageList, setDevicesUsageList] = useState(queryCache.getQueryData(['devicesUsageList', 'all']));
+  const [buildingRecentUsage, setBuildingRecentUsage] = useState(queryCache.getQueryData('buildingRecentUsage'));
+
+  const { data: buildingCurrentStats } = useQuery('buildingCurrentStats', fetchBuildingCurrentStats);
+
+  const [getRecentUsage] = useMutation(fetchRecentUsage, {
+    onSuccess: (data) => {
+      queryCache.setQueryData('buildingRecentUsage', data);
+      setBuildingRecentUsage(data)
+    }
+  });
+
+  const [getDevicesUsageList] = useMutation(fetchDevicesUsageList, {
+    onSuccess: (data) => {
+      queryCache.setQueryData(['devicesUsageList', 'all'], data);
+      setDevicesUsageList(data);
+    }
+  });
+
+  useEffect(() => {
+    getDevicesUsageList({
+      startTs: DateTime.utc().minus(Duration.fromObject({ days: 7 })).toISO(),
+      endTs: DateTime.utc().toISO(),
+    })
+    getRecentUsage({
+      durations: ['P1D', 'P7D', 'P30D', 'P60D']
+    })
+  }, []);
+
   return (
     <StyledContainer>
       <MainPageHeader text={'Usage'} hamMenu />
 
-      <InfoSquares>
+      {buildingCurrentStats && <InfoSquares>
         <InfoSquareCard
           small
           width='120px'
           className='infoSquareCard'
           level={2}
-          value={13.93}
+          value={buildingCurrentStats.current_power_usage}
           unit='U'
           text='Power Usage'
           highlight
@@ -101,8 +81,8 @@ export const Usage = () => {
           width='120px'
           className='infoSquareCard'
           level={2}
-          value={44}
-          unit='/52'
+          value={buildingCurrentStats.num_devices_on}
+          unit={`/${buildingCurrentStats.num_devices_total}`}
           text='Devices Online'
           outline
         />
@@ -111,18 +91,20 @@ export const Usage = () => {
           width='120px'
           className='infoSquareCard'
           level={2}
-          value={5}
-          unit='/9'
+          value={buildingCurrentStats.num_rooms_on}
+          unit={`/${buildingCurrentStats.num_rooms_total}`}
           text='Rooms Online'
           outline
         />
-      </InfoSquares>
+      </InfoSquares>}
 
-      <RecentStats recentStats={recentStats} />
+      {buildingRecentUsage &&
+        <RecentUsage recentUsage={buildingRecentUsage} />
+      }
 
       <UsageToday />
 
-      <HighestUsage usage={highestUsage} />
+      <HighestUsage title='Highest Usage' description='Highest energy usage data of devices during the last 7 days' usageData={devicesUsageList} />
 
     </StyledContainer>
   )

@@ -1,15 +1,16 @@
 import React from 'react'
 import { SectionHeader } from 'components/Headers/SectionHeader'
-import { RecentStatsList } from 'pages/Common/RecentStats/RecentStatsList';
+import { RecentUsageList } from 'pages/Common/RecentUsage/RecentUsageList';
 
-export const RecentStats = ({ recentStats }) => {
+
+export const RecentUsage = ({ recentUsage }) => {
   return (
     <section>
       <SectionHeader
         level={2}
         text='Recent'
       />
-      <RecentStatsList stats={recentStats} />
+      <RecentUsageList recentUsage={recentUsage} />
     </section>
   )
 }

@@ -219,6 +219,10 @@ const Reset = createGlobalStyle`
     padding: 0;
   }
 
+  button {
+    all: unset;
+  }
+
 `;
 
 export default Reset;

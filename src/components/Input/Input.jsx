@@ -18,14 +18,17 @@ const StyledInput = styled.div`
    :focus,
    :-webkit-autofill  {
      background-color: transparent;
-     border: 1px solid ${({ theme }) => theme.cAccebt1_300};
+     border: 1px solid ${({ theme }) => theme.cAccent1_300};
    }
 
     :not(:placeholder-shown) ~ label,
     :focus ~ label,
     :-webkit-autofill ~ label {
       top: 0%;
-      left: 10px;
+      left: 12px;
+      background-color: ${({ theme }) => theme.cPrimary_1000};
+      padding: 0 6px;
+      border-radius: ${({ theme }) => theme.brRadius_1};
       ${tInputLabel_s1};
     }
   }
@@ -40,11 +43,31 @@ const StyledInput = styled.div`
   }
 `;
 
-export const Input = ({ label, type, placeholder = " ", value, id, onChange, style }) => {
+export const Input = ({
+  label,
+  type,
+  placeholder = " ",
+  value,
+  name,
+  onChange,
+  style,
+  register,
+  required,
+  ...rest
+}) => {
   return (
     <StyledInput style={style}>
-      <input name={id} id={id} type={type} placeholder={placeholder} value={value} onChange={onChange} />
-      <label htmlFor={id}>{label}</label>
+      <input
+        name={name}
+        id={name}
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        ref={register(required && { required: required })}
+        {...rest}
+      />
+      <label htmlFor={name}>{label}</label>
     </StyledInput>
   )
 }

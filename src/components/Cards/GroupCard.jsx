@@ -20,6 +20,10 @@ const StyledCard = styled.div`
 
     .icon {
       color: ${({ theme }) => theme.cPrimary_600};
+
+      button {
+        color: inherit;
+      }
     }
   }
 
@@ -43,9 +47,9 @@ export const GroupCard = ({
         <div className='titleGroup'>
           <div className='title'>{title}</div>
           <div className='icon'>
-            <Link to='/events'>
+            <button>
               <ThreeDot width='22px' />
-            </Link>
+            </button>
           </div>
         </div>
         <footer>

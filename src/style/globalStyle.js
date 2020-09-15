@@ -42,8 +42,13 @@ const GlobalStyle = createGlobalStyle`
   :focus {outline:none;}
   ::-moz-focus-inner {border:0;}
 
-  a > svg {
+  a > svg, button > svg {
     vertical-align: middle;
+  }
+
+  //Utility classes
+  .no-scroll {
+    overflow: hidden;
   }
 
 `;

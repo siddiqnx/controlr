@@ -7,7 +7,8 @@ const StyledCard = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 1px solid ${({ theme }) => theme.cPrimary_650};
+  background: ${({ theme }) => theme.cPrimary_900};
+  border-right: 1px solid ${({ theme }) => theme.cPrimary_650};
   border-left: none;
   width: ${({ width }) => width};
   padding: 22px 5px;

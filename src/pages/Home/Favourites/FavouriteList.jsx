@@ -2,33 +2,9 @@ import React from 'react'
 import styled from 'styled-components';
 import Generic from 'images/deviceIcons/Generic';
 import { FavouriteCard } from 'components/Cards/FavouriteCard';
-
-const favourites = [
-  {
-    deviceName: 'Air Conditioner',
-    room: 'Living Room',
-    icon: Generic,
-    state: true,
-  },
-  {
-    deviceName: 'Fan',
-    room: 'Bedroom',
-    icon: Generic,
-    state: false,
-  },
-  {
-    deviceName: 'Bed Lamp',
-    room: 'Bedroom',
-    icon: Generic,
-    state: true,
-  },
-  {
-    deviceName: 'TV',
-    room: 'Living Room',
-    icon: Generic,
-    state: false,
-  },
-];
+import { useQuery, useMutation, queryCache } from 'react-query';
+import { fetchFavorites } from 'requests/devices/fetchFavorites';
+import { updateDeviceState } from 'requests/devices/updateDeviceState';
 
 const StyledList = styled.ul`
   display: flex;
@@ -39,18 +15,26 @@ const StyledList = styled.ul`
 `;
 
 export const FavouriteList = ({ className }) => {
+  const { data: favorites } = useQuery('favorites', fetchFavorites);
+  const [mutateDeviceState] = useMutation(updateDeviceState, {
+    onSuccess: () => {
+      queryCache.invalidateQueries('favorites');
+      queryCache.invalidateQueries('buildingCurrentStats');
+    }
+  });
+
   return (
     <StyledList className={className}>
-      {favourites.map((device, i) => (
-        <li key={i}>
+      {favorites && favorites.map((device) => (
+        <li key={device.device_id}>
           <FavouriteCard
             className='favouriteCard'
-            title={device.deviceName}
+            title={device.name}
             state={device.state}
-            subtitle={device.room}
+            subtitle={device.room_name}
             width='150px'
-            icon={device.icon}
-            link='/rooms'
+            icon={Generic}
+            onClick={() => mutateDeviceState({ deviceId: device.device_id, state_change: !device.state })}
           />
         </li>
       ))}

@@ -2,39 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { ScheduleCard } from 'components/Cards/ScheduleCard';
 import Generic from 'images/deviceIcons/Generic';
-
-const schedules = [
-  {
-    deviceName: 'Air Conditioner',
-    roomName: 'Bedroom',
-    roomGroup: 'Ground Floor',
-    days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    onSchedule: true,
-    time: '9:38 AM',
-    state: true,
-    icon: Generic
-  },
-  {
-    deviceName: 'Refrigirator',
-    roomName: 'Bedroom',
-    roomGroup: 'Ground Floor',
-    days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    onSchedule: false,
-    time: '9:38 AM',
-    state: false,
-    icon: Generic
-  },
-  {
-    deviceName: 'Outside Lamp',
-    roomName: 'Parking Lot',
-    roomGroup: 'Ground Floor',
-    days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    onSchedule: false,
-    time: '9:38 AM',
-    state: true,
-    icon: Generic
-  },
-];
+import { useQuery } from 'react-query';
+import { fetchScheduleList } from 'requests/schedules/fetchScheduleList';
+import daysOfWeek from 'constants/daysOfWeek';
 
 const StyledList = styled.ul`
   display: grid;
@@ -48,16 +18,28 @@ const StyledList = styled.ul`
 `;
 
 export const ScheduleList = () => {
+  const { data: schedules } = useQuery(['schedules', {}], fetchScheduleList);
   return (
     <StyledList>
-      {schedules.map((schedule, i) => (
-        <li key={i}>
-          <ScheduleCard
-            className='scheduleCard'
-            {...schedule}
-          />
-        </li>
-      ))}
+      {schedules?.map((schedule) => {
+        return (
+          <li key={schedule.id}>
+            <ScheduleCard
+              id={schedule.id}
+              className='scheduleCard'
+              deviceName={schedule.device_name}
+              roomName={schedule.room_name}
+              roomGroup={schedule.room_group_name}
+              daysOfWeek={schedule.days_of_week.map((day) => daysOfWeek[day])}
+              stateTrigger={schedule.state_change}
+              time={schedule.time}
+              scheduleState={schedule.state}
+              icon={Generic}
+            />
+          </li>
+        )
+      }
+      )}
     </StyledList>
   )
 }

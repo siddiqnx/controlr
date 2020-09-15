@@ -2,14 +2,15 @@ import React from 'react'
 import { SectionHeader } from 'components/Headers/SectionHeader'
 import { DeviceList } from './DeviceList'
 
-export const Devices = () => {
+export const Devices = ({ devices, title = 'Devices', description }) => {
   return (
     <section>
       <SectionHeader
-        text='Devices'
+        text={title}
+        description={description}
         level={2}
       />
-      <DeviceList />
+      <DeviceList devices={devices} />
     </section>
   )
 }

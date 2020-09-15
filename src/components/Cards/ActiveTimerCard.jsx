@@ -64,8 +64,9 @@ export const ActiveTimerCard = ({
   deviceName,
   roomName,
   roomGroup,
-  onTimer,
+  stateTrigger,
   hours,
+  minutes,
   icon: Icon,
   width,
   link,
@@ -81,8 +82,8 @@ export const ActiveTimerCard = ({
           <div className='device'>{deviceName}</div>
           <div className='room'>{roomName} • {roomGroup}</div>
           <div className='timer'>
-            {onTimer ? 'ON' : 'OFF'} Timer
-            <span><TimerIcon className='timerIcon' width='16px' height='16px' />{hours} hours</span>
+            {stateTrigger ? 'ON' : 'OFF'}
+            <span><TimerIcon className='timerIcon' width='16px' height='16px' />{hours} hours {minutes && `${minutes} minutes`}</span>
           </div>
         </div>
         <div className='menu'>

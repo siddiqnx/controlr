@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RecentStatsContainer = styled.ul`
+export const RecentUsageContainer = styled.ul`
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;

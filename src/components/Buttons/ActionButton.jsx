@@ -3,22 +3,23 @@ import { Link } from 'react-router-dom'
 
 export const ActionButton = ({
   children,
-  link = false,
-  to,
+  button = false,
+  link,
   onClick,
-  className
+  className,
+
 }) => {
   return (
     <>
-      {link
+      {button
         ?
-        <Link className={className} to={to}>
-          {children}
-        </Link>
-        :
         <button className={className} onClick={onClick}>
           {children}
         </button>
+        :
+        <Link className={className} to={link}>
+          {children}
+        </Link>
       }
     </>
   )

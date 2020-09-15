@@ -37,6 +37,7 @@ export default {
   cGradient_1: 'linear-gradient(275deg, #204DF0 0%, #0831C7 100%)',
 
   bsShadow_1: '0 8px 25px 0 rgba(0, 0, 0, .25)',
+  bsShadow_2: 'inset -2px -2px 8px 0 rgba(0, 0, 0, .25), 0 8px 13px 0 rgba(0, 0, 0, .25), 0 0 50px 8px rgba(21, 65, 224, .40)',
 
   brRadius_1: '15px',
 }
