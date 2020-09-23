@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import styled, { css } from 'styled-components';
 import { useContext } from 'react';
 import { SidebarContext } from 'contexts/SidebarContext';
@@ -8,27 +8,10 @@ import CrossIcon from 'images/icons/Cross';
 import { ProfileCard } from 'components/Cards/ProfileCard';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 import { BuildingListItem } from 'components/ListItems/BuildingListItem';
-import { useQuery } from 'react-query';
+import { queryCache, useQuery } from 'react-query';
 import { fetchUserInfo } from 'requests/account/fetchUserInfo';
 import PlusIcon from 'images/icons/Plus';
 import { Link } from 'react-router-dom';
-
-const buildings = [{
-  id: 1,
-  name: 'Home',
-  location: 'Chennai',
-  image: 'https://images.unsplash.com/photo-1576941089067-2de3c901e126?w=24&fit=crop'
-}, {
-  id: 2,
-  name: 'Guest House',
-  location: 'Goa',
-  image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=24&fit=crop'
-}, {
-  id: 3,
-  name: 'Office',
-  location: 'Chennai',
-  image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=24&fit=crop'
-}];
 
 const StyledAside = styled.aside`
   position: fixed;
@@ -87,8 +70,12 @@ export const Sidebar = () => {
     first_name: null,
     last_name: null
   });
-
+  const [buildings, setBuildings] = useState([])
   const { data: userInfo } = useQuery('userInfo', fetchUserInfo);
+
+  useEffect(() => {
+    setBuildings(() => queryCache.getQueryData('buildings'));
+  }, [queryCache.getQueryData('buildings')])
 
   useLayoutEffect(() => {
     if (open) {
@@ -122,11 +109,9 @@ export const Sidebar = () => {
                 </span>
               </header>
               <BuildingList className='buildingsList'>
-                {buildings && buildings.map((building) => <BuildingListItem
+                {buildings?.map((building) => <BuildingListItem
                   key={building.id}
                   name={building.name}
-                  location={building.location}
-                  imageLink={building.image}
                 />)}
               </BuildingList>
             </BuildingsSection>

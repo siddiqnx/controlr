@@ -5,6 +5,7 @@ import Generic from 'images/deviceIcons/Generic';
 import { useQuery } from 'react-query';
 import { fetchScheduleList } from 'requests/schedules/fetchScheduleList';
 import daysOfWeek from 'constants/daysOfWeek';
+import { DateTime } from 'luxon';
 
 const StyledList = styled.ul`
   display: grid;
@@ -22,6 +23,7 @@ export const ScheduleList = () => {
   return (
     <StyledList>
       {schedules?.map((schedule) => {
+        const time = DateTime.fromISO(schedule.trigger_time).toLocaleString(DateTime.TIME_24_SIMPLE)
         return (
           <li key={schedule.id}>
             <ScheduleCard
@@ -32,7 +34,7 @@ export const ScheduleList = () => {
               roomGroup={schedule.room_group_name}
               daysOfWeek={schedule.days_of_week.map((day) => daysOfWeek[day])}
               stateTrigger={schedule.state_change}
-              time={schedule.time}
+              time={time}
               scheduleState={schedule.state}
               icon={Generic}
             />

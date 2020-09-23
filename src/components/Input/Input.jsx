@@ -53,10 +53,11 @@ export const Input = ({
   style,
   register,
   required,
+  className,
   ...rest
 }) => {
   return (
-    <StyledInput style={style}>
+    <StyledInput className={className} style={style}>
       <input
         name={name}
         id={name}

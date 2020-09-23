@@ -5,11 +5,13 @@ import { useParams } from 'react-router-dom';
 import { fetchScheduleList } from 'requests/schedules/fetchScheduleList';
 import { ScheduleCardSmall } from 'components/Cards/ScheduleCardSmall';
 import daysOfWeek from 'constants/daysOfWeek';
+import { DateTime } from 'luxon';
 
 const StyledList = styled.ul`
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   flex-wrap: nowrap;
+  align-items: stretch;
 `;
 
 export const ScheduleList = () => {
@@ -17,19 +19,20 @@ export const ScheduleList = () => {
   const { data: schedules } = useQuery(['schedules', { deviceId }], fetchScheduleList);
   return (
     <StyledList>
-      {schedules?.map((schedule) => (
-        <li key={schedule.id}>
+      {schedules?.map((schedule) => {
+        const time = DateTime.fromISO(schedule.trigger_time).toLocaleString(DateTime.TIME_24_SIMPLE);
+        return (<li key={schedule.id}>
           <ScheduleCardSmall
             id={schedule.id}
             deviceId={schedule.device}
             stateTrigger={schedule.state_change}
             scheduleState={schedule.state}
-            time={schedule.time}
+            time={time}
             daysOfWeek={schedule.days_of_week.map((day) => daysOfWeek[day])}
             width='200px'
           />
-        </li>
-      ))}
+        </li>);
+      })}
 
     </StyledList>
   )

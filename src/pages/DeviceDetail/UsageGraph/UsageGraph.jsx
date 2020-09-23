@@ -3,34 +3,35 @@ import { DateTime, Duration } from 'luxon';
 import { SectionHeader } from 'components/Headers/SectionHeader'
 import { useMutation, queryCache } from 'react-query';
 import { fetchUsageTimeseries } from 'requests/usage/fetchUsageTimeseries';
-import { ChartContainer } from 'components/SectionContainers/ChartContainer';
 import { UsageAreaChart } from 'components/Charts/UsageAreaChart';
+import { useParams } from 'react-router-dom';
 
-export const UsageToday = () => {
-  const [usageTimeseries, setUsageTimeseries] = useState(queryCache.getQueryData('usageTimeseries'));
+export const UsageGraph = () => {
+  const { deviceId } = useParams();
+  const [usageTimeseries, setUsageTimeseries] = useState(queryCache.getQueryData(['usageTimeseries', { device: deviceId }]));
   const [getUsageTimeseries] = useMutation(fetchUsageTimeseries, {
     onSuccess: (data) => {
-      queryCache.setQueryData(['usageTimeseries'], data);
+      queryCache.setQueryData(['usageTimeseries', { device: deviceId }], data);
       setUsageTimeseries(data);
     }
   });
 
   useEffect(() => {
     getUsageTimeseries({
-      startTs: DateTime.local().toUTC().startOf('day').toISO(),
-      endTs: DateTime.local().plus(Duration.fromObject({ hours: 1 })).toUTC().startOf('hour').toISO(),
-      frequency: 'hour'
+      deviceIds: [parseInt(deviceId)],
+      startTs: DateTime.utc().startOf('day').minus(Duration.fromObject({ days: 7 })).toISO(),
+      endTs: DateTime.utc().startOf('day').plus(Duration.fromObject({ days: 1 })).toISO(),
+      frequency: 'day'
     });
   }, []);
-
-  console.log(usageTimeseries);
 
 
   return (
     <section>
       <SectionHeader
         level={2}
-        text='Usage Today'
+        text='Usage'
+        description='Usage of this device for the past 7 days'
       />
 
       {usageTimeseries &&

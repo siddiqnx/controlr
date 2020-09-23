@@ -36,11 +36,8 @@ export const AddBuilding = () => {
   const [mutateCreateBuilding] = useMutation(createBuilding);
   const history = useHistory();
 
-  const onSubmit = (formData) => {
-    const data = {
-      ...formData,
-    }
-    mutateCreateBuilding({ data });
+  const onSubmit = (data) => {
+    mutateCreateBuilding(data);
     history.goBack();
   }
 
@@ -57,7 +54,7 @@ export const AddBuilding = () => {
         />
         <ButtonGroup>
           <Button lg onClick={() => history.goBack()}>Cancel</Button>
-          <Button type='submit' solid lg iconLeft icon={PlusIcon}>Add Device</Button>
+          <Button type='submit' solid lg iconLeft icon={PlusIcon}>Add Building</Button>
         </ButtonGroup>
       </FormContainer>
     </StyledContainer>

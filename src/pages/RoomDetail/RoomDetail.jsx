@@ -6,7 +6,7 @@ import AddIcon from 'images/icons/Plus';
 import { InfoSquares } from 'components/SectionContainers/InfoSquares';
 import { InfoSquareCard } from 'components/Cards/InfoSquareCard';
 import styled from 'styled-components';
-import { Devices } from './Devices/Devices';
+import { Devices } from 'pages/Common/Devices/Devices';
 import { RecentUsage } from 'pages/Common/RecentUsage/RecentUsage';
 import { HighestUsage } from 'pages/Common/HighestUsage/HighestUsage';
 import { useParams } from 'react-router-dom';
@@ -16,7 +16,7 @@ import { fetchRoomCurrentStats } from 'requests/rooms/fetchRoomCurrentStats';
 import { fetchRecentUsage } from 'requests/usage/fetchRecentUsage';
 import { fetchDevicesUsageList } from 'requests/usage/fetchDevicesUsageList';
 import { DateTime, Duration } from 'luxon';
-
+import { UsageGraph } from './UsageGraph/UsageGraph';
 
 const StyledContainer = styled(Container)`
   .secondaryPageHeader {
@@ -92,6 +92,9 @@ export const RoomDetail = () => {
           {roomRecentUsage?.length > 0 &&
             <RecentUsage recentUsage={roomRecentUsage} />
           }
+
+          <UsageGraph />
+
           {devicesUsageList?.length > 0 &&
             <HighestUsage title='Highest Usage' description='Highest Usage List of devices in this room during the last 7 days' usageData={devicesUsageList} />
           }

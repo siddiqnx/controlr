@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { GroupCard } from 'components/Cards/GroupCard';
 import { useQuery } from 'react-query';
-import { fetchGroups } from 'requests/buildings/fetchGroups';
+import { fetchGroups } from 'requests/groups/fetchGroupList';
 
 const StyledList = styled.ul`
   display: grid;
@@ -17,10 +17,10 @@ export const GroupList = () => {
       {groups && groups.map((group, i) => (
         <li key={group.id}>
           <GroupCard
+            id={group.id}
             className='groupCard'
             title={group.name}
             numDevices={group.num_devices}
-            link='/usage'
           />
         </li>
       ))}

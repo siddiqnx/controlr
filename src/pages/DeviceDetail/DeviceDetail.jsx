@@ -16,6 +16,7 @@ import { updateDeviceState } from 'requests/devices/updateDeviceState';
 import { fetchRecentUsage } from 'requests/usage/fetchRecentUsage';
 import { Timers } from './Timers/Timers';
 import { Schedules } from './Schedules/Schedules';
+import { UsageGraph } from './UsageGraph/UsageGraph';
 
 const StyledContainer = styled(Container)`
   .largeSwitchButton {
@@ -26,7 +27,7 @@ const StyledContainer = styled(Container)`
 const StyledActionButton = styled(ActionButton)`
   ${({ isFavorite }) => isFavorite && css`
     svg {
-      color: ${ ({ theme }) => theme.cAccent1_300};
+      color: ${({ theme }) => theme.cAccent1_300};
     }
   `}
 `;
@@ -36,18 +37,18 @@ export const DeviceDetail = () => {
 
   const [deviceRecentUsage, setDeviceRecentUsage] = useState(queryCache.getQueryData(['deviceRecentUsage', deviceId]));
 
-  const { data: device } = useQuery(['device', deviceId], fetchDeviceDetail);
+  const { data: device } = useQuery(['devices', deviceId], fetchDeviceDetail);
 
   const [mutateSetFavorite] = useMutation(setFavorite, {
-    onSuccess: () => queryCache.invalidateQueries(['device', deviceId])
+    onSuccess: () => queryCache.invalidateQueries(['devices', deviceId])
   });
 
   const [mutateRemoveFavorite] = useMutation(removeFavorite, {
-    onSuccess: () => queryCache.invalidateQueries(['device', deviceId])
+    onSuccess: () => queryCache.invalidateQueries(['devices', deviceId])
   });
 
   const [mutateUpdateDeviceState] = useMutation(updateDeviceState, {
-    onSuccess: () => queryCache.invalidateQueries(['device', deviceId])
+    onSuccess: () => queryCache.invalidateQueries(['devices', deviceId])
   })
 
   const [getRecentUsage] = useMutation(fetchRecentUsage, {
@@ -103,6 +104,10 @@ export const DeviceDetail = () => {
       {deviceRecentUsage &&
         <RecentUsage recentUsage={deviceRecentUsage} />
       }
+
+      <UsageGraph />
+
+
       <Timers />
       <Schedules />
     </StyledContainer>

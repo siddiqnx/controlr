@@ -8,7 +8,7 @@ import { DateTime, Interval } from 'luxon';
 
 const StyledList = styled.ul`
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   flex-wrap: nowrap;
 `;
 

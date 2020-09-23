@@ -1,8 +1,8 @@
 import { authFetch } from "utils/fetch";
 
-export const createRoom = async (data) => {
+export const fetchGroupDetail = async (key, groupId) => {
   const fetch = authFetch();
   const buildingId = localStorage.getItem('currentBuilding')
-  const response = await fetch.post(`buildings/${buildingId}/rooms/`, data);
+  const response = await fetch.get(`buildings/${buildingId}/groups/${groupId}/`);
   return response.data;
 }

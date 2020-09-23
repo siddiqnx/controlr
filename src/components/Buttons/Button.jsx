@@ -6,6 +6,8 @@ const StyledButton = styled.button`
   color: ${ ({ theme }) => theme.cAccent1_200};
   border: 1px solid currentColor;
   border-radius: 28px;
+  text-align: center;
+  white-space: nowrap;
 
   .iconLeft {
     margin-right: 6px;
@@ -47,11 +49,12 @@ export const Button = ({
   iconLeft = false,
   iconRight = false,
   children,
+  type = 'button',
   onClick,
 }) => {
 
   return (
-    <StyledButton solid={solid} sm={sm} md={md} lg={lg} onClick={onClick}>
+    <StyledButton type={type} solid={solid} sm={sm} md={md} lg={lg} onClick={onClick}>
       {ButtonIcon && iconLeft && <ButtonIcon className='iconLeft' />}
       {children}
       {ButtonIcon && iconRight && <ButtonIcon className='iconRight' />}

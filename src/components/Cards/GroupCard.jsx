@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import ThreeDot from 'images/icons/3DotMenuHorizontal';
 import { tText_0_b, tText_s1_n } from 'style/typography';
+
 const StyledCard = styled.div`
   padding: 22px 16px;
   border: 1px solid ${({ theme }) => theme.cPrimary_650};
@@ -35,15 +36,15 @@ const StyledCard = styled.div`
 `;
 
 export const GroupCard = ({
-  width = '100%',
+  id,
   title,
-  numDevices = 0,
   className,
-  link
+  width = '100%',
+  numDevices = 0
 }) => {
   return (
     <StyledCard className={className} width={width}>
-      <Link to={link}>
+      <Link to={`/groups/${id}`}>
         <div className='titleGroup'>
           <div className='title'>{title}</div>
           <div className='icon'>

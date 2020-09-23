@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container } from 'components/Container/Container'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
@@ -11,6 +11,10 @@ import PlusIcon from 'images/icons/Plus';
 import { FormContainer } from 'components/SectionContainers/FormContainer';
 import { createRoom } from 'requests/rooms/createRoom';
 import { fetchBuildingDetail } from 'requests/buildings/fetchBuildingDetail';
+import { Select } from 'antd';
+import { fetchRoomGroupList } from 'requests/buildings/fetchRoomGroupList';
+
+const { Option } = Select;
 
 const StyledContainer = styled(Container)`
   padding: 100px 48px 0;
@@ -33,19 +37,25 @@ const ButtonGroup = styled.footer`
 `;
 
 export const AddRoom = () => {
-  const { register, handleSubmit } = useForm();
-  const [mutateCreateBuilding] = useMutation(createRoom);
+  const { register, handleSubmit, setValue } = useForm();
+  const [mutateCreateRoom] = useMutation(createRoom);
   const history = useHistory();
   const buildingId = localStorage.getItem('currentBuilding');
   const { data: buildingInfo } = useQuery(['buildings', buildingId], fetchBuildingDetail);
+  const { data: roomGroupList } = useQuery('roomGroups', fetchRoomGroupList);
 
-  const onSubmit = (formData) => {
-    const data = {
-      ...formData,
-    }
-    mutateCreateBuilding({ data });
+  const onSubmit = (data) => {
+    mutateCreateRoom(data);
     history.goBack();
   }
+
+  const handleChange = (value) => {
+    setValue('room_group', value);
+  }
+
+  useEffect(() => {
+    register('room_group');
+  }, [register]);
 
   return (
     <StyledContainer>
@@ -60,6 +70,15 @@ export const AddRoom = () => {
           required={true}
           register={register}
         />
+        <Select
+          style={{ width: "100%", borderRadius: '15px' }}
+          placeholder="Select a Room Group"
+          onChange={handleChange}
+        >
+          {roomGroupList?.map((roomGroup) => (
+            <Option key={roomGroup.id} value={roomGroup.id}>{roomGroup.name}</Option>
+          ))}
+        </Select>
         <ButtonGroup>
           <Button lg onClick={() => history.goBack()}>Cancel</Button>
           <Button type='submit' solid lg iconLeft icon={PlusIcon}>Add Room</Button>

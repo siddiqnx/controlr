@@ -64,7 +64,7 @@ export const InfoSquareCard = ({
   return (
     <StyledCard small={small} outline={outline} width={width} highlight={highlight} className={className}>
       <div className='value'>
-        {value}
+        {value ? value : 0}
         {unit && <span className='unit'>{unit}</span>}
       </div>
       <H className='title'>{text}</H>

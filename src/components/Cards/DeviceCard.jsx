@@ -42,9 +42,11 @@ export const DeviceCard = ({
   deviceId
 }) => {
   const { roomId } = useParams();
+  const { groupId } = useParams();
   const [mutate] = useMutation(updateDeviceState, {
     onSuccess: () => {
       queryCache.invalidateQueries(['rooms', roomId]);
+      queryCache.invalidateQueries(['groups', groupId])
       queryCache.invalidateQueries(['roomCurrentStats', roomId])
     }
   });

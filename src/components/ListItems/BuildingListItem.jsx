@@ -11,6 +11,7 @@ const StyledListItem = styled.li`
     width: 26px;
     height: 26px;
     border-radius: 100%;
+    background: ${({ theme }) => theme.cPrimary_800};
   }
 
   .name {
@@ -27,7 +28,7 @@ const StyledListItem = styled.li`
 export const BuildingListItem = ({ name, location, imageLink }) => {
   return (
     <StyledListItem >
-      <img className='buildingImage' src={imageLink}></img>
+      <span className='buildingImage'></span>
       <div className='name'>
         {name}
         <span className='location'>{location}</span>

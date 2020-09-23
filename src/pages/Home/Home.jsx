@@ -34,7 +34,7 @@ export const Home = () => {
       {buildingCurrentStats &&
         <InfoSquares>
           <InfoSquareCard className='infoSquareCard' level={2} value={buildingCurrentStats.num_devices_on} unit={`/${buildingCurrentStats.num_devices_total}`} text='Devies Online' />
-          <InfoSquareCard className='infoSquareCard' level={2} value={buildingCurrentStats.current_power_usage} unit='U' text='Power Usage' highlight />
+          <InfoSquareCard className='infoSquareCard' level={2} value={buildingCurrentStats.current_power_usage} unit='Wh' text='Power Usage' highlight />
         </InfoSquares>
       }
 

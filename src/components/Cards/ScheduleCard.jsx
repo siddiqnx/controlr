@@ -10,8 +10,6 @@ const StyledCard = styled.div`
   background: ${({ theme }) => theme.cPrimary_925};
   padding: 16px 16px;
 
-  .link {
-  }
 
   header {
     display: flex;

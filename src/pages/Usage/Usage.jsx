@@ -14,7 +14,6 @@ import { fetchRecentUsage } from 'requests/usage/fetchRecentUsage';
 import { useMutation, queryCache } from 'react-query';
 import { DateTime, Duration } from 'luxon';
 
-
 const StyledContainer = styled(Container)`
 `;
 
@@ -34,7 +33,6 @@ const InfoSquares = styled.section`
 export const Usage = () => {
   const [devicesUsageList, setDevicesUsageList] = useState(queryCache.getQueryData(['devicesUsageList', 'all']));
   const [buildingRecentUsage, setBuildingRecentUsage] = useState(queryCache.getQueryData('buildingRecentUsage'));
-
   const { data: buildingCurrentStats } = useQuery('buildingCurrentStats', fetchBuildingCurrentStats);
 
   const [getRecentUsage] = useMutation(fetchRecentUsage, {
@@ -51,15 +49,18 @@ export const Usage = () => {
     }
   });
 
+
   useEffect(() => {
     getDevicesUsageList({
       startTs: DateTime.utc().minus(Duration.fromObject({ days: 7 })).toISO(),
       endTs: DateTime.utc().toISO(),
-    })
+    });
     getRecentUsage({
       durations: ['P1D', 'P7D', 'P30D', 'P60D']
-    })
+    });
+
   }, []);
+
 
   return (
     <StyledContainer>
@@ -72,7 +73,7 @@ export const Usage = () => {
           className='infoSquareCard'
           level={2}
           value={buildingCurrentStats.current_power_usage}
-          unit='U'
+          unit='Wh'
           text='Power Usage'
           highlight
         />

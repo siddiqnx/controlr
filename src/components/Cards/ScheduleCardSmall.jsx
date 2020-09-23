@@ -12,6 +12,7 @@ const StyledCard = styled.div`
   border-radius: ${({ theme }) => theme.brRadius_1};
   padding: 16px;
   margin-right: 16px;
+  height: 100%;
 
   header {
     display: flex;

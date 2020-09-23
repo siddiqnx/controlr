@@ -18,6 +18,9 @@ import { AddDevice } from 'pages/Forms/AddDevice';
 import { Sidebar } from 'components/Asides/Sidebar';
 import { AddBuilding } from 'pages/Forms/AddBuilding';
 import { AddRoom } from 'pages/Forms/AddRoom';
+import { AddSchedule } from 'pages/Forms/AddSchedule';
+import { GroupDetail } from 'pages/GroupDetail/GroupDetail';
+import { AddGroup } from 'pages/Forms/AddGroup';
 
 
 const ProtectedRoute = ({ children, ...rest }) => {
@@ -59,10 +62,19 @@ const App = () => {
           <Route path="/login">
             <Login />
           </Route>
-          <ProtectedRoute path='/rooms/:roomId/add/'>
+          <ProtectedRoute path='/groups/add'>
+            <AddGroup />
+          </ProtectedRoute>
+          <ProtectedRoute path='/groups/:groupId'>
+            <GroupDetail />
+          </ProtectedRoute>
+          <ProtectedRoute path='/rooms/:roomId/devices/:deviceId/schedules/add'>
+            <AddSchedule />
+          </ProtectedRoute>
+          <ProtectedRoute path='/rooms/:roomId/add'>
             <AddDevice />
           </ProtectedRoute>
-          <ProtectedRoute path='/rooms/add/'>
+          <ProtectedRoute path='/rooms/add'>
             <AddRoom />
           </ProtectedRoute>
           <ProtectedRoute path='/buildings/add'>
@@ -94,7 +106,7 @@ const App = () => {
         <Sidebar />
         <Navbar />
       </Router>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </>
   );
 }
